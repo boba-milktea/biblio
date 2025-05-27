@@ -1,14 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import 'tailwindcss';
 
+body {
+    height: 100vh;
+}
 @theme {
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
-    --color-primary: '#3B3C36';
-    --color-secondary: '#B8B8AA';
-    --color-bg: '#FAF9F6';
-    --color-accent: '#6C9A8B';
-    --color-border: '#E2E2DC';
+    --color-background: #ffffff; /* Clean white for main background */
+    --color-surface: #f9fafb; /* Soft surface for cards, headers */
+    --color-primary: #005f73; /* Deep teal – intellectual & trustworthy */
+    --color-secondary: #94d2bd; /* Minty fresh – accent and highlights */
+    --color-text: #333333; /* Very dark gray – easier on eyes than black */
+    --color-muted-text: #6b7280; /* For secondary content (metadata, dates) */
+    --color-border: #e5e7eb; /* Light gray for clean separation */
+    --color-accent: #ffb703; /* Subtle warm gold – attention without shouting */
+    --color-link: #0a9396; /* Medium teal – consistent with primary but lighter */
 }
 
 h1,
