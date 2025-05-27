@@ -7,8 +7,8 @@ const firebaseConfig = {
   projectId: 'techbibli',
   storageBucket: 'techbibli.firebasestorage.app',
   messagingSenderId: '199217273055',
-  appId: '1:199217273055:web:8f5b0d99435db6512c316a',
-  measurementId: 'G-SMB52DJZVE'
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);

@@ -1,5 +1,11 @@
 const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <footer className="w-full bg-primary text-surface py-4 mt-auto">
+      <div className="max-w-4xl mx-auto px-4 text-center text-sm">
+        © {new Date().getFullYear()} Biblio. All rights reserved.
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
