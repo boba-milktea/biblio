@@ -5,13 +5,15 @@ import { Outlet, useNavigation } from 'react-router-dom';
 import Loading from './Loading';
 
 const Layout = () => {
+  // useNavigaton returns the current navigation. Good for rendering pending UI
   const navigation = useNavigation();
+  const isLoading = navigation.state === 'loading';
 
   return (
-    <div className="grid h-100">
+    <div className="flex flex-col h-screen">
       <Header />
-      {navigation.state === 'loading' && <Loading />}
-      <main>
+      {isLoading && <Loading />}
+      <main className="grow-1">
         <Outlet />
         <CartOverview />
       </main>
