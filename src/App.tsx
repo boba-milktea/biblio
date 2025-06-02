@@ -1,9 +1,11 @@
+
+
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './components/Home';
 import Books, { bookLoader } from './features/books/Books';
 import Cart from './features/cart/Cart';
-import CreateOrder from './features/order/CreateOrder';
-import Order from './features/order/Order';
+import CreateOrder, { newOrderAction } from './features/order/CreateOrder';
+import Order, { orderLoader } from './features/order/Order';
 import Layout from './components/Layout';
 import Error from './components/Error';
 
@@ -20,8 +22,13 @@ const router = createBrowserRouter([
         errorElement: <Error />
       },
       { path: '/cart', element: <Cart /> },
-      { path: '/order/new', element: <CreateOrder /> },
-      { path: '/order/:orderId', element: <Order /> }
+      { path: '/order/new', element: <CreateOrder />, action: newOrderAction },
+      {
+        path: '/order/:orderId',
+        element: <Order />,
+        loader: orderLoader,
+        errorElement: <Error />
+      }
     ]
   }
 ]);
@@ -29,5 +36,6 @@ const router = createBrowserRouter([
 function App() {
   return <RouterProvider router={router} />;
 }
+
 
 export default App;
