@@ -6,7 +6,7 @@ const Order = () => {
   const order = useLoaderData();
   const { status, priority, priorityPrice, estimatedDelivery, orderPrice } =
     order;
-
+  console.log(order);
   return (
     <div>
       <div>

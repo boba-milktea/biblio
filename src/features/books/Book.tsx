@@ -1,7 +1,26 @@
+import Button from '../../components/Button';
+import DeleteItem from '../../components/DeleteItem';
+import ItemQty from '../../components/ItemQty';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import type { BookType } from '../../types/bookType';
+import { addItem, getItemQty } from '../cart/cartSilce';
 
 function Book({ book }: { book: BookType }) {
-  const { title, subtitle, image, price } = book;
+  const { isbn13, title, subtitle, image, price } = book;
+  const dispatch = useAppDispatch();
+  const qty = useAppSelector(getItemQty(isbn13));
+
+  const handleAdd = () => {
+    const newItem = {
+      bookId: isbn13,
+      name: title,
+      quantity: 1,
+      unitPrice: Number(price.slice(1)),
+      totalPrice: Number(price.slice(1)) * 1
+    };
+    dispatch(addItem(newItem));
+  };
+
   return (
     <li>
       <img src={image} alt={`image of ${title}`} />
@@ -9,6 +28,13 @@ function Book({ book }: { book: BookType }) {
         <h2 className="font-bold text-xl">{title}</h2>
         <p className="my-2">{subtitle}</p>
         <span>{price}</span>
+        <Button onClick={handleAdd}>Add to Cart</Button>
+        {qty && (
+          <div>
+            <ItemQty bookId={isbn13} qty={qty} />
+            <DeleteItem bookId={isbn13}></DeleteItem>
+          </div>
+        )}
       </div>
     </li>
   );

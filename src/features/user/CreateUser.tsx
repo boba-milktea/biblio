@@ -2,14 +2,21 @@ import React from 'react';
 import { useState } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { updateName } from './userSlice';
+import { useNavigate } from 'react-router-dom';
+import Button from '../../components/Button';
 
 const CreateUser = () => {
   const [username, setUsername] = useState('');
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!username) return;
     dispatch(updateName(username));
+
+    navigate('/books');
   };
 
   return (
@@ -23,7 +30,7 @@ const CreateUser = () => {
           setUsername(e.target.value)
         }
       />
-      {username !== '' && <button type="submit">Go!</button>}
+      {username !== '' && <Button>Go!</Button>}
     </form>
   );
 };

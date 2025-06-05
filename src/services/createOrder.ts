@@ -2,7 +2,6 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase';
 import type { CartOrderType } from '../types/cartOrderType';
 
-
 export const createOrder = async (
   collectionName: string,
   data: CartOrderType

@@ -1,4 +1,5 @@
-import { useNavigate, useRouteError } from 'react-router-dom';
+import { useRouteError } from 'react-router-dom';
+import LinkButton from './LinkButton';
 // const errorImg = '../assets/error.png';
 interface errorType {
   data: string;
@@ -7,7 +8,6 @@ interface errorType {
 }
 
 const Error = () => {
-  const navigate = useNavigate();
   const error = useRouteError() as errorType;
 
   console.log(error);
@@ -17,13 +17,7 @@ const Error = () => {
       <img src="src\assets\error.png" alt="a big oops to show error" />
       <h1>Oops!There's something wrong</h1>
       <p>{error.data || error.message}</p>
-      <button
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        Go Back
-      </button>
+      <LinkButton to="-1">Go Back</LinkButton>
     </div>
   );
 };

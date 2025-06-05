@@ -1,41 +1,34 @@
-import { Link } from 'react-router-dom';
-const fakeCart = [
-  {
-    bookId: 12,
-    name: 'A good night sleep',
-    quantity: 2,
-    unitPrice: 16,
-    totalPrice: 32
-  },
-  {
-    bookId: 6,
-    name: 'Fox in the forest',
-    quantity: 1,
-    unitPrice: 13,
-    totalPrice: 13
-  },
-  {
-    bookId: 11,
-    name: 'Spinach and Soup',
-    quantity: 1,
-    unitPrice: 15,
-    totalPrice: 15
-  }
-];
+import LinkButton from '../../components/LinkButton';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { clearCart, getCart } from './cartSilce';
+import CartItem from './CartItem';
+import Button from '../../components/Button';
+import EmptyCart from './EmptyCart';
 
 function Cart() {
-  const cart = fakeCart;
+  const cart = useAppSelector(getCart);
+  const username = useAppSelector((state) => state.user.username);
+  const dispatch = useAppDispatch();
+
+  if (!cart.length) return <EmptyCart />;
 
   return (
     <div>
-      <Link to="/menu">&larr; Back to menu</Link>
+      <LinkButton to="/menu">&larr; Back to menu</LinkButton>
 
-      <h2>Your cart, %NAME%</h2>
+      <h2>Your cart, {username}</h2>
+
+      <ul>
+        {cart.map((item) => (
+          <CartItem key={item.bookId} item={item} />
+        ))}
+      </ul>
 
       <div>
-        <Link to="/order/new">Order pizzas</Link>
-        <button>Clear cart</button>
+        <Button to="/order/new">Order Now</Button>
       </div>
+
+      <Button onClick={() => dispatch(clearCart())}>Clear cart</Button>
     </div>
   );
 }
