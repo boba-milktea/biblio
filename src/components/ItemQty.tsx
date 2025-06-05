@@ -6,10 +6,14 @@ const ItemQty = ({ bookId, qty }: { bookId: string; qty: number }) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div>
-      <Button onClick={() => dispatch(decreaseQty(bookId))}>-</Button>
-      <span>{qty}</span>
-      <Button onClick={() => dispatch(increaseQty(bookId))}>+</Button>
+    <div className="flex items-center">
+      <Button type="small" onClick={() => dispatch(decreaseQty(bookId))}>
+        -
+      </Button>
+      <span className="px-2">{qty}</span>
+      <Button type="small" onClick={() => dispatch(increaseQty(bookId))}>
+        +
+      </Button>
     </div>
   );
 };

@@ -21,14 +21,15 @@ const isValidPhone = (str: string) =>
     str
   );
 
-
 const CreateOrder = () => {
   const username = useAppSelector((state) => state.user.username);
   const [isPriority, setIsPriority] = useState(false);
   const cart = useAppSelector(getCart);
 
   const totalCartPrice = useAppSelector(getTotalPrice);
-  const priorityPrice = isPriority ? totalCartPrice * 0.2 : 0;
+  const priorityPrice = isPriority
+    ? (totalCartPrice + totalCartPrice * 0.2).toFixed(2)
+    : totalCartPrice;
 
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
@@ -37,25 +38,39 @@ const CreateOrder = () => {
   if (!cart.length) return <EmptyCart />;
 
   return (
-    <div>
-      <h2>Ready to order?</h2>
-      <Form method="POST">
-        <div>
-          <label htmlFor="customer">First Name</label>
-          <input defaultValue={username} type="text" name="customer" required />
+    <div className="flex flex-col gap-4 p-2 w-11/12 lg:w-6/12 mx-auto">
+      <h2 className="text-xl lg:text-2xl">Ready to order?</h2>
+      <Form className=" flex flex-col gap-4" method="POST">
+        <div className="flex items-center">
+          <label htmlFor="customer">First Name: </label>
+          <input
+            className="form-input ml-4"
+            defaultValue={username}
+            type="text"
+            name="customer"
+            required
+          />
         </div>
-        <div>
-          <label htmlFor="phone">Phone number</label>
-          <input type="tel" name="phone" required />
+        <div className="flex items-center">
+          <label htmlFor="phone">Phone number: </label>
+          <input className="form-input ml-4" type="tel" name="phone" required />
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
-        <div>
-          <label htmlFor="address">Address</label>
-          <input type="text" name="address" required />
-        </div>
-        <div>
-          <label htmlFor="priority">Want to yo give your order priority?</label>
+        <div className="flex items-center">
+          <label htmlFor="address">Address: </label>
           <input
+            className="form-input ml-4"
+            type="text"
+            name="address"
+            required
+          />
+        </div>
+        <div className="flex items-center">
+          <label className="text-md font-bold lg:text-lg" htmlFor="priority">
+            Want to yo give your order priority?
+          </label>
+          <input
+            className="h-6 w-6 ml-4 bk-border"
             type="checkbox"
             name="priority"
             id="priority"
@@ -64,10 +79,11 @@ const CreateOrder = () => {
           />
         </div>
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-        <div>{totalCartPrice}</div>
-        <Button disabled={isSubmitting}>
-          {isSubmitting ? 'Placing Order...' : `Order from ${priorityPrice} `}
-        </Button>
+        <div className="w-11/12 lg:w-6/12">
+          <Button disabled={isSubmitting}>
+            {isSubmitting ? 'Placing Order...' : `Order from ${priorityPrice} `}
+          </Button>
+        </div>
       </Form>
     </div>
   );

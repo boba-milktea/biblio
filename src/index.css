@@ -7,15 +7,16 @@ body {
 @theme {
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
-    --color-background: #ffffff; /* Clean white for main background */
-    --color-surface: #f9fafb; /* Soft surface for cards, headers */
-    --color-primary: #005f73; /* Deep teal – intellectual & trustworthy */
-    --color-secondary: #94d2bd; /* Minty fresh – accent and highlights */
-    --color-text: #333333; /* Very dark gray – easier on eyes than black */
-    --color-muted-text: #6b7280; /* For secondary content (metadata, dates) */
-    --color-border: #e5e7eb; /* Light gray for clean separation */
-    --color-accent: #ffb703; /* Subtle warm gold – attention without shouting */
-    --color-link: #0a9396; /* Medium teal – consistent with primary but lighter */
+    --color-background: #ffffff;
+    --color-surface: #f9fafb;
+    --color-primary: #ff8e03;
+    --color-secondary: #ffb703;
+    --color-text: #333333;
+    --color-muted-text: #6b7280;
+    --color-border: #e5e7eb;
+    --color-accent: #ffb703;
+    --color-link: #0a9396;
+    --color-footer-bk: #00343f;
 }
 
 h1,
@@ -23,10 +24,26 @@ h2,
 h3,
 h4,
 h5 {
-    @apply font-heading;
+    @apply font-heading italic font-bold;
 }
 
 p,
 span {
     @apply font-body;
+}
+
+@layer components {
+    .wrapper {
+        display: grid;
+        place-items: center;
+        padding: 2em;
+    }
+    .form-input {
+        @apply border-2 px-2 py-1 border-secondary rounded-md text-text;
+    }
+
+    /* This is not working yet. */
+    .form-input:focus {
+        @apply border-primary;
+    }
 }

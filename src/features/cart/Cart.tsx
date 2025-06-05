@@ -13,22 +13,23 @@ function Cart() {
   if (!cart.length) return <EmptyCart />;
 
   return (
-    <div>
-      <LinkButton to="/menu">&larr; Back to menu</LinkButton>
+    <div className="flex flex-col gap-4 p-2">
+      <LinkButton to="/books">&larr; Back to our collection</LinkButton>
 
-      <h2>Your cart, {username}</h2>
+      <h2 className="text-2xl">Your cart, {username}</h2>
 
-      <ul>
+      <ul className="flex flex-col gap-2">
         {cart.map((item) => (
           <CartItem key={item.bookId} item={item} />
         ))}
       </ul>
 
-      <div>
-        <Button to="/order/new">Order Now</Button>
+      <div className="flex gap-4">
+        <Button onClick={() => dispatch(clearCart())}>Clear cart</Button>
+        <LinkButton style="button" to="/order/new">
+          Order
+        </LinkButton>
       </div>
-
-      <Button onClick={() => dispatch(clearCart())}>Clear cart</Button>
     </div>
   );
 }
