@@ -1,5 +1,3 @@
-
-
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from './components/Home';
 import Books, { bookLoader } from './features/books/Books';
@@ -36,6 +34,5 @@ const router = createBrowserRouter([
 function App() {
   return <RouterProvider router={router} />;
 }
-
 
 export default App;

@@ -9,49 +9,40 @@ import {
 import { createOrder } from '../../services/createOrder';
 
 import type { CartItem, CartOrderType } from '../../types/cartOrderType';
+import Button from '../../components/Button';
+import { useAppSelector } from '../../hooks';
+import { clearCart, getCart, getTotalPrice } from '../cart/cartSilce';
+import EmptyCart from '../cart/EmptyCart';
+import store from '../../store';
+import { useState } from 'react';
 
 const isValidPhone = (str: string) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
     str
   );
 
-const fakeCart = [
-  {
-    bookId: 12,
-    name: 'Mediterranean',
-    quantity: 2,
-    unitPrice: 16,
-    totalPrice: 32
-  },
-  {
-    bookId: 6,
-    name: 'Vegetale',
-    quantity: 1,
-    unitPrice: 13,
-    totalPrice: 13
-  },
-  {
-    bookId: 11,
-    name: 'Spinach and Mushroom',
-    quantity: 1,
-    unitPrice: 15,
-    totalPrice: 15
-  }
-];
 
 const CreateOrder = () => {
-  const cart = fakeCart;
+  const username = useAppSelector((state) => state.user.username);
+  const [isPriority, setIsPriority] = useState(false);
+  const cart = useAppSelector(getCart);
+
+  const totalCartPrice = useAppSelector(getTotalPrice);
+  const priorityPrice = isPriority ? totalCartPrice * 0.2 : 0;
+
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
   const formErrors = useActionData();
 
+  if (!cart.length) return <EmptyCart />;
+
   return (
     <div>
       <h2>Ready to order?</h2>
-      <Form method="POST" action="/order/new">
+      <Form method="POST">
         <div>
           <label htmlFor="customer">First Name</label>
-          <input type="text" name="customer" required />
+          <input defaultValue={username} type="text" name="customer" required />
         </div>
         <div>
           <label htmlFor="phone">Phone number</label>
@@ -64,12 +55,19 @@ const CreateOrder = () => {
         </div>
         <div>
           <label htmlFor="priority">Want to yo give your order priority?</label>
-          <input type="checkbox" name="priority" id="priority" />
+          <input
+            type="checkbox"
+            name="priority"
+            id="priority"
+            value={isPriority}
+            onChange={(e) => setIsPriority(e.target.checked)}
+          />
         </div>
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-        <button disabled={isSubmitting}>
-          {isSubmitting ? 'Placing Order...' : 'Order now'}
-        </button>
+        <div>{totalCartPrice}</div>
+        <Button disabled={isSubmitting}>
+          {isSubmitting ? 'Placing Order...' : `Order from ${priorityPrice} `}
+        </Button>
       </Form>
     </div>
   );
@@ -92,7 +90,7 @@ export const newOrderAction: ActionFunction = async ({
   };
 
   // handle phone error
-  const errors = { phone: '' };
+  const errors: { phone?: string } = {};
   if (!isValidPhone(order.phone)) {
     errors.phone = 'Please provide a valid phone number in case of urgency';
   }
@@ -102,6 +100,10 @@ export const newOrderAction: ActionFunction = async ({
 
   // if all good, redirect to the order page
   const newOrderId = await createOrder('orders', order);
+
+  // there should be a work around or a better solution.
+  store.dispatch(clearCart());
+
   return redirect(`/order/${newOrderId}`);
 };
 

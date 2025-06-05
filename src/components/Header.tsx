@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import SearchOrder from '../features/order/SearchOrder';
 import User from '../features/user/User';
-const logo = '../assets/logo.png';
+import logo from '../assets/logo.png';
 
 const Header = () => {
   return (
@@ -13,7 +13,7 @@ const Header = () => {
       <nav className="flex gap-4 md:gap-12">
         <Link to="books">Books</Link>
         <Link to="cart">Cart</Link>
-        <Link to="order">Order</Link>
+        <Link to="order/new">Order</Link>
       </nav>
       <User />
     </header>

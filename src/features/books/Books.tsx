@@ -18,7 +18,6 @@ function Books() {
 
 export const bookLoader = async () => {
   const books = await getBooks();
-  console.log(books);
   return books;
 };
 

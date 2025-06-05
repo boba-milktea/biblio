@@ -1,9 +1,13 @@
 export interface CartItem {
-  bookId: number;
+  bookId: string;
   name: string;
   quantity: number;
   unitPrice: number;
   totalPrice: number;
+}
+
+export interface CartItemsType {
+  cart: CartItem[];
 }
 
 export interface FormDetail {
@@ -13,7 +17,7 @@ export interface FormDetail {
 }
 
 export interface CartOrderType extends FormDetail {
-  position: string;
+  position?: string;
   cart: CartItem[];
-  priority: boolean;
+  priority?: boolean;
 }
