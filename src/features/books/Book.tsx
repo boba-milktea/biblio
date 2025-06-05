@@ -27,10 +27,12 @@ function Book({ book }: { book: BookType }) {
       <div className="px-2 md:px-8">
         <h2 className="font-bold text-xl">{title}</h2>
         <p className="my-2">{subtitle}</p>
-        <span>{price}</span>
-        <Button onClick={handleAdd}>Add to Cart</Button>
+        <div className="flex mt-2 items-center justify-center">
+          <span className="mr-2">{price}</span>
+          <Button onClick={handleAdd}>Add to Cart</Button>
+        </div>
         {qty && (
-          <div>
+          <div className="mt-4 flex gap-2 items-center justify-center">
             <ItemQty bookId={isbn13} qty={qty} />
             <DeleteItem bookId={isbn13}></DeleteItem>
           </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../components/Button';
 
 const SearchOrder = () => {
   const [query, setQuery] = useState('');
@@ -13,17 +14,17 @@ const SearchOrder = () => {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form className="mx-2" onSubmit={(e) => handleSubmit(e)}>
       <input
-        className="border-accent border-2"
+        className="form-input text-md mr-2 w-5/12 md:w-7/12"
         type="text"
-        placeholder="order number"
+        placeholder="e.g. Hs379KXZsx937"
         value={query}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setQuery(e.target.value)
         }
       />
-      <button type="submit">Search</button>
+      <Button type="submit">Search Order</Button>
     </form>
   );
 };

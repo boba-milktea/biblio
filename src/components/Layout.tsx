@@ -15,8 +15,9 @@ const Layout = () => {
       {isLoading && <Loading />}
       <main className="grow-1">
         <Outlet />
-        <CartOverview />
       </main>
+      <CartOverview />
+
       <Footer />
     </div>
   );

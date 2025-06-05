@@ -1,21 +1,21 @@
 import { useLoaderData } from 'react-router-dom';
 import { getOrder } from '../../services/getOrder';
 import type { LoaderFunction, LoaderFunctionArgs } from 'react-router-dom';
+import { useAppSelector } from '../../hooks';
+import { getTotalPrice } from '../cart/cartSilce';
 
 const Order = () => {
   const order = useLoaderData();
-  const { status, priority, priorityPrice, estimatedDelivery, orderPrice } =
-    order;
-  console.log(order);
-  return (
-    <div>
-      <div>
-        <h2>Status</h2>
+  const { priority, priorityPrice, estimatedDelivery, orderPrice } = order;
+  const totalCartPrice = useAppSelector(getTotalPrice);
 
-        <div>
-          {priority && <span>Priority</span>}
-          <span>{status} order</span>
-        </div>
+  console.log(orderPrice);
+  return (
+    <div className="flex flex-col gap-4 p-2 w-11/12 lg:w-6/12 mx-auto">
+      <div>
+        <h2 className="text-xl lg:text-2xl">Status</h2>
+
+        <div>{priority && <span>Priority</span>}</div>
       </div>
 
       <div>
@@ -24,7 +24,7 @@ const Order = () => {
       </div>
 
       <div>
-        <p>Price pizza: {orderPrice}</p>
+        <p>Price pizza: {totalCartPrice}</p>
         {priority && <p>Price priority: {priorityPrice}</p>}
         <p>To pay on delivery: {orderPrice + priorityPrice}</p>
       </div>
