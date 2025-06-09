@@ -15,7 +15,7 @@ const EmptyCart = () => {
         &larr; Go To Books
       </Button>
       <SearchOrder />
-      <h1>It's an empty cart</h1>
+      <h2>It's an empty cart</h2>
       <img className="w-48 mt-4" src={coffeMonster} alt="a coffee monster" />
     </div>
   );

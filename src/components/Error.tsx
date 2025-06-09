@@ -27,7 +27,7 @@ const Error = () => {
           src={errorImg}
           alt="a big oops to show error"
         />
-        <h1>Aye! There's something wrong...</h1>
+        <h2>Aye! There's something wrong...</h2>
         <p className="text-lg lg:text-xl font-bold">
           {error.data || error.message}
         </p>
