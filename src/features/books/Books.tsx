@@ -1,5 +1,9 @@
-import { useLoaderData } from 'react-router-dom';
-import { getBooks } from '../../services/getBooks';
+import {
+  useLoaderData,
+  type LoaderFunction,
+  type LoaderFunctionArgs
+} from 'react-router-dom';
+import { fetchBooks } from '../../services/fetchBooks';
 import type { BookType } from '../../types/bookType';
 import Book from './Book';
 
@@ -16,8 +20,14 @@ function Books() {
   );
 }
 
-export const bookLoader = async () => {
-  const books = await getBooks();
+export const bookLoader: LoaderFunction = async ({
+  request
+}: LoaderFunctionArgs) => {
+  const url = new URL(request.url);
+  const query = url.searchParams.get('q') ?? '';
+  const searchText = query.trim() === '' ? 'html' : query;
+  const books = await fetchBooks(searchText);
+  console.log(books);
   return books;
 };
 

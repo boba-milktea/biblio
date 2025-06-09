@@ -19,16 +19,34 @@ body {
     --color-footer-bk: #00343f;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-    @apply font-heading italic font-bold;
+@layer base {
+    h1 {
+        @apply font-heading italic font-bold text-3xl lg:text-4xl xl:text-5xl tracking-wide;
+    }
+
+    h2 {
+        @apply font-heading italic font-bold text-2xl lg:text-3xl tracking-wide;
+    }
+
+    h3 {
+        @apply text-lg md:text-xl font-bold;
+    }
+
+    button,
+    a {
+        @apply text-base md:text-lg lg:text-xl font-bold cursor-pointer transition duration-300 ease-in-out;
+    }
+
+    label {
+        @apply md:text-lg lg:text-xl;
+    }
 }
 
 p,
-span {
+h3,
+span,
+label,
+input {
     @apply font-body;
 }
 
@@ -38,8 +56,16 @@ span {
         place-items: center;
         padding: 2em;
     }
+
+    .message-card {
+        @apply mx-auto w-8/12 lg:w-6/12 xl:w-5/12 gap-4 flex flex-col items-center border-2 border-border mt-24 p-12 shadow-md shadow-muted-text;
+    }
+    .card {
+        @apply mt-14 border-1 border-border shadow-md flex flex-col gap-4 px-4 py-8 w-11/12 lg:w-6/12 mx-auto;
+    }
+
     .form-input {
-        @apply border-2 px-2 py-1 border-secondary rounded-md text-text;
+        @apply border-2 px-2 py-1 border-secondary rounded-md text-text md:text-lg;
     }
 
     /* This is not working yet. */

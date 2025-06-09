@@ -13,21 +13,21 @@ function Cart() {
   if (!cart.length) return <EmptyCart />;
 
   return (
-    <div className="flex flex-col gap-4 p-2">
-      <LinkButton to="/books">&larr; Back to our collection</LinkButton>
+    <div className="card">
+      <LinkButton to="/books"> &larr; Back to our collection</LinkButton>
 
       <h2 className="text-2xl">Your cart, {username}</h2>
 
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2 w-full py-4 lg:px-4">
         {cart.map((item) => (
           <CartItem key={item.bookId} item={item} />
         ))}
       </ul>
 
       <div className="flex gap-4">
-        <Button onClick={() => dispatch(clearCart())}>Clear cart</Button>
+        <Button onClick={() => dispatch(clearCart())}>Clear Cart</Button>
         <LinkButton style="button" to="/order/new">
-          Order
+          Order Now!
         </LinkButton>
       </div>
     </div>

@@ -22,19 +22,22 @@ function Book({ book }: { book: BookType }) {
   };
 
   return (
-    <li>
+    <li className="md:w-11/12 lg:w-8/12 flex flex-col items-center">
       <img src={image} alt={`image of ${title}`} />
       <div className="px-2 md:px-8">
         <h2 className="font-bold text-xl">{title}</h2>
         <p className="my-2">{subtitle}</p>
         <div className="flex mt-2 items-center justify-center">
-          <span className="mr-2">{price}</span>
-          <Button onClick={handleAdd}>Add to Cart</Button>
+          <span className="mr-2 font-bold md:text-lg lg:text-xl">{price}</span>
+          {qty ? (
+            <DeleteItem bookId={isbn13}></DeleteItem>
+          ) : (
+            <Button onClick={handleAdd}>Add to Cart</Button>
+          )}
         </div>
         {qty && (
           <div className="mt-4 flex gap-2 items-center justify-center">
             <ItemQty bookId={isbn13} qty={qty} />
-            <DeleteItem bookId={isbn13}></DeleteItem>
           </div>
         )}
       </div>

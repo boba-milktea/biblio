@@ -16,7 +16,7 @@ const SearchOrder = () => {
   return (
     <form className="mx-2" onSubmit={(e) => handleSubmit(e)}>
       <input
-        className="form-input text-md mr-2 w-5/12 md:w-7/12"
+        className="form-input text-md mr-2 w-5/12 md:w-7/12 lg:text-lg"
         type="text"
         placeholder="e.g. Hs379KXZsx937"
         value={query}

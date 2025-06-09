@@ -1,4 +1,4 @@
-export interface CartItem {
+export interface CartItemType {
   bookId: string;
   name: string;
   quantity: number;
@@ -7,7 +7,7 @@ export interface CartItem {
 }
 
 export interface CartItemsType {
-  cart: CartItem[];
+  cart: CartItemType[];
 }
 
 export interface FormDetail {
@@ -18,6 +18,6 @@ export interface FormDetail {
 
 export interface CartOrderType extends FormDetail {
   position?: string;
-  cart: CartItem[];
+  cart: CartItemType[];
   priority?: boolean;
 }

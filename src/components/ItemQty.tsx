@@ -2,7 +2,7 @@ import Button from './Button';
 import { increaseQty, decreaseQty } from '../features/cart/cartSilce';
 import { useAppDispatch } from '../hooks';
 
-const ItemQty = ({ bookId, qty }: { bookId: string; qty: number }) => {
+const ItemQty = ({ bookId, qty }: { bookId: string; qty: number | null }) => {
   const dispatch = useAppDispatch();
 
   return (

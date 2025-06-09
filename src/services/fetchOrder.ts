@@ -1,7 +1,7 @@
 import { db } from '../firebase';
 import { getDoc, doc } from 'firebase/firestore';
 
-export const getOrder = async (id: string | undefined) => {
+export const fetchOrder = async (id: string) => {
   try {
     const docRef = doc(db, 'orders', id);
     const snapshot = await getDoc(docRef);

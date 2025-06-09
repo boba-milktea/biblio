@@ -15,14 +15,14 @@ const fadeImage = [
 
 const Slideshow = () => {
   return (
-    <div className="w-11/12 lg:w-8/12 ">
+    <div className="w-full lg:w-8/12 xl:w-5/12 ">
       <Fade>
         {fadeImage.map((image, index) => (
           <div key={index}>
             <img
               className="rounded-xl"
               src={image.imgUrl}
-              alt={Image.altText}
+              alt={image.altText}
             />
           </div>
         ))}
