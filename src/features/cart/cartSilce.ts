@@ -11,6 +11,9 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action) {
+      if (state.cart.includes(action.payload)) {
+        console.log('already there');
+      }
       state.cart.push(action.payload);
     },
     deleteItem(state, action) {

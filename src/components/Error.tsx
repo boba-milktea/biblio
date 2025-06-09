@@ -1,5 +1,6 @@
 import { useRouteError } from 'react-router-dom';
-import LinkButton from './LinkButton';
+import Button from './Button';
+import { useNavigate } from 'react-router-dom';
 import errorImg from '../assets/error-monster.png';
 
 interface errorType {
@@ -10,15 +11,27 @@ interface errorType {
 
 const Error = () => {
   const error = useRouteError() as errorType;
+  const navigate = useNavigate();
+
+  const handleGoBack = () => navigate(-1);
 
   return (
-    <div className="mx-auto w-10/12 border-2 border-black mt-24 p-12 flex shadow-md shadow-muted-text">
-      <img className="w-32" src={errorImg} alt="a big oops to show error" />
-      <div>
-        <h1>Aye! There's something wrong</h1>
-        <p>{error.data || error.message}</p>
+    <div className="message-card">
+      <Button onClick={handleGoBack} type="btn-link">
+        &larr; Go Back
+      </Button>
+
+      <div className="flex flex-col items-center mt-8 gap-4">
+        <img
+          className="w-32 lg:w-48"
+          src={errorImg}
+          alt="a big oops to show error"
+        />
+        <h1>Aye! There's something wrong...</h1>
+        <p className="text-lg lg:text-xl font-bold">
+          {error.data || error.message}
+        </p>
       </div>
-      <LinkButton to="-1">Go Back</LinkButton>
     </div>
   );
 };

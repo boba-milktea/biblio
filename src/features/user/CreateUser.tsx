@@ -20,13 +20,13 @@ const CreateUser = () => {
   };
 
   return (
-    <form className="flex flex-col gap-4 my-4" onSubmit={handleSubmit}>
-      <p className="text-lg lg:text-xl">
-        Hey there! Please start by telling me your name
+    <form className="flex flex-col gap-4 my-12" onSubmit={handleSubmit}>
+      <p className="text-xl lg:text-2xl">
+        Please start by telling me your name
       </p>
       <input
         type="text"
-        className="border-2 rounded-lg p-2"
+        className="border-2 rounded-lg p-4"
         placeholder="e.g.Jonas"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setUsername(e.target.value)
