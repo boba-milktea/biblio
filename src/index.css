@@ -21,11 +21,11 @@ body {
 
 @layer base {
     h1 {
-        @apply font-heading italic font-bold text-3xl lg:text-4xl xl:text-5xl tracking-wide;
+        @apply font-heading italic font-bold text-2xl lg:text-3xl xl:text-4xl tracking-wide;
     }
 
     h2 {
-        @apply font-heading italic font-bold text-2xl lg:text-3xl tracking-wide;
+        @apply font-heading italic font-bold text-xl lg:text-2xl tracking-wide;
     }
 
     h3 {
@@ -34,11 +34,11 @@ body {
 
     button,
     a {
-        @apply text-base md:text-lg lg:text-xl font-bold cursor-pointer transition duration-300 ease-in-out;
+        @apply text-base lg:text-lg font-bold cursor-pointer transition duration-300 ease-in-out;
     }
 
     label {
-        @apply md:text-lg lg:text-xl;
+        @apply text-base lg:text-lg;
     }
 }
 
@@ -52,13 +52,11 @@ input {
 
 @layer components {
     .wrapper {
-        display: grid;
-        place-items: center;
-        padding: 2em;
+        @apply grid place-items-center p-2;
     }
 
     .message-card {
-        @apply mx-auto w-8/12 lg:w-6/12 xl:w-5/12 gap-4 flex flex-col items-center border-2 border-border mt-24 p-12 shadow-md shadow-muted-text;
+        @apply mx-auto w-10/12 lg:w-6/12 xl:w-5/12 gap-4 flex flex-col items-center border-2 border-border mt-24 p-12 shadow-md shadow-muted-text;
     }
     .card {
         @apply mt-14 border-1 border-border shadow-md flex flex-col gap-4 px-4 py-8 w-11/12 lg:w-6/12 mx-auto;
